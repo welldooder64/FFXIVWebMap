@@ -1,0 +1,16 @@
+#version 300 es
+precision highp float;
+
+in vec2 a_position;
+in vec2 a_texCoord;
+
+uniform vec2 u_resolution; // canvas size in pixels
+
+out vec2 v_texCoord;
+
+void main() {
+    vec2 clipSpace = a_position / u_resolution * 2.0 - 1.0;
+
+    gl_Position = vec4(clipSpace.x, -clipSpace.y, 0, 1);
+    v_texCoord = a_texCoord;
+}

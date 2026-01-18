@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0-windows7.0": {
+      "DalamudPackager": {
+        "type": "Direct",
+        "requested": "[14.0.1, )",
+        "resolved": "14.0.1",
+        "contentHash": "y0WWyUE6dhpGdolK3iKgwys05/nZaVf4ZPtIjpLhJBZvHxkkiE23zYRo7K7uqAgoK/QvK5cqF6l3VG5AbgC6KA=="
+      },
+      "DotNet.ReproducibleBuilds": {
+        "type": "Direct",
+        "requested": "[1.2.39, )",
+        "resolved": "1.2.39",
+        "contentHash": "fcFN01tDTIQqDuTwr1jUQK/geofiwjG5DycJQOnC72i1SsLAk1ELe+apBOuZ11UMQG8YKFZG1FgvjZPbqHyatg=="
+      },
+      "EmbedIO": {
+        "type": "Direct",
+        "requested": "[3.5.2, )",
+        "resolved": "3.5.2",
+        "contentHash": "YU4j+3XvuO8/VPkNf7KWOF1TpMhnyVhXnPsG1mvnDhTJ9D5BZOFXVDvCpE/SkQ1AJ0Aa+dXOVSW3ntgmLL7aJg==",
+        "dependencies": {
+          "Unosquare.Swan.Lite": "3.1.0"
+        }
+      },
+      "Lumina": {
+        "type": "Direct",
+        "requested": "[7.1.0, )",
+        "resolved": "7.1.0",
+        "contentHash": "7zjreOpMXOhf+m5uTefoLZO6Mt3y68XhK036eDOS5JJ8yuIjAgFteWkzdCRcss8+PH5skMnDMDUZoTJJefQCtg==",
+        "dependencies": {
+          "BCnEncoder.Net": "2.2.1",
+          "Microsoft.Extensions.ObjectPool": "10.0.0"
+        }
+      },
+      "Lumina.Excel": {
+        "type": "Direct",
+        "requested": "[7.4.1, )",
+        "resolved": "7.4.1",
+        "contentHash": "j8MeFA8MFFhXOrhfMrmTJAyIzwLVMF/52hujG00sFEYCLb25AFW8NhkiG8O1PLksdkeTnEvirNSfD5sPXBcTrg==",
+        "dependencies": {
+          "Lumina": "7.1.0"
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection": {
+        "type": "Direct",
+        "requested": "[10.0.1, )",
+        "resolved": "10.0.1",
+        "contentHash": "zerXV0GAR9LCSXoSIApbWn+Dq1/T+6vbXMHGduq1LoVQRHT0BXsGQEau0jeLUBUcsoF/NaUT8ADPu8b+eNcIyg==",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.1"
+        }
+      },
+      "TeximpNet": {
+        "type": "Direct",
+        "requested": "[1.4.3, )",
+        "resolved": "1.4.3",
+        "contentHash": "uNjTMP4Cv5jI/a/f5iqLpxaQ/aNAE7XKm9S08EEB6W3UMW82/qmcoLRkYjm+2bxBQJ3C5RU9VLu7/pRxavuYJQ==",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1"
+        }
+      },
+      "BCnEncoder.Net": {
+        "type": "Transitive",
+        "resolved": "2.2.1",
+        "contentHash": "tI5+/OQo0kciLqWrViRjpOH+IL3FjexYnoWZajiGV41g/EM9CGbWsxsPzBDmpoxNkrV9uox/EtIhCIi9chBSFw==",
+        "dependencies": {
+          "CommunityToolkit.HighPerformance": "8.4.0"
+        }
+      },
+      "CommunityToolkit.HighPerformance": {
+        "type": "Transitive",
+        "resolved": "8.4.0",
+        "contentHash": "flxspiBs0G/0GMp7IK2J2ijV9bTG6hEwFc/z6ekHqB6nwRJ4Ry2yLdx+TkbCUYFCl4XhABkAwomeKbT6zM2Zlg=="
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Transitive",
+        "resolved": "10.0.1",
+        "contentHash": "oIy8fQxxbUsSrrOvgBqlVgOeCtDmrcynnTG+FQufcUWBrwyPfwlUkCDB2vaiBeYPyT+20u9/HeuHeBf+H4F/8g=="
+      },
+      "Microsoft.Extensions.ObjectPool": {
+        "type": "Transitive",
+        "resolved": "10.0.0",
+        "contentHash": "bpeCq0IYmVLACyEUMzFIOQX+zZUElG1t+nu1lSxthe7B+1oNYking7b91305+jNB6iwojp9fqTY9O+Nh7ULQxg=="
+      },
+      "Microsoft.NETCore.Platforms": {
+        "type": "Transitive",
+        "resolved": "1.1.0",
+        "contentHash": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A=="
+      },
+      "NETStandard.Library": {
+        "type": "Transitive",
+        "resolved": "1.6.1",
+        "contentHash": "WcSp3+vP+yHNgS8EV5J7pZ9IRpeDuARBPN28by8zqff1wJQXm26PVU8L3/fYLBJVU7BtDyqNVWq2KlCVvSSR4A==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Unosquare.Swan.Lite": {
+        "type": "Transitive",
+        "resolved": "3.1.0",
+        "contentHash": "X3s5QE/KMj3WAPFqFve7St+Ds10BB50u8kW8PmKIn7FVkn7yEXe9Yxr2htt1WV85DRqfFR0MN/BUNHkGHtL4OQ=="
+      }
+    }
+  }
+}
