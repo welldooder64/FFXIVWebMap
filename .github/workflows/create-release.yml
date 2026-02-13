@@ -1,20 +1,20 @@
 ﻿name: Create Release and Update Repository
 
 on:
-    push:
-        tags:
-            - 'v*'
+  push:
+    tags:
+      - 'v*'
 
 permissions:
-    contents: write
+  contents: write
 
 jobs:
-    release:
-        uses: welldooder64/DalamudPluginRepo/.github/workflows/create-release.template.yml@main
-        with:
-            internal_name: WebMap
-            solution_name: WebMap
-            build_configuration: Release
-            personal_plugin_repo: welldooder64/DalamudPluginRepo
-            personal_plugin_repo_branch: main
-        secrets: inherit
+  release:
+    uses: welldooder64/DalamudPluginRepo/.github/workflows/create-release.template.yml@main
+    with:
+      internal-name: WebMap
+      solution-name: WebMap
+      build-configuration: Release
+      personal-plugin-repo: welldooder64/DalamudPluginRepo
+      personal-plugin-repo-branch: main
+    secrets: inherit
