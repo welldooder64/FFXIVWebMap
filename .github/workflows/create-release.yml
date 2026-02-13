@@ -13,8 +13,7 @@ jobs:
     uses: welldooder64/DalamudPluginRepo/.github/workflows/create-release.template.yml@main
     with:
       internal-name: WebMap
-      solution-name: WebMap
-      build-configuration: Release
+      build-location: WebMap.Plugin/bin/x64/Release
       personal-plugin-repo: welldooder64/DalamudPluginRepo
       personal-plugin-repo-branch: main
     secrets: inherit
