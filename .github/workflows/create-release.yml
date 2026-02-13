@@ -10,7 +10,7 @@ permissions:
 
 jobs:
     release:
-        uses: welldooder64/DalamudPluginRepo/.github/templates/create-release-template.yml@main
+        uses: welldooder64/DalamudPluginRepo/.github/workflows/create-release.template.yml@main
         with:
             internal_name: WebMap
             solution_name: WebMap
