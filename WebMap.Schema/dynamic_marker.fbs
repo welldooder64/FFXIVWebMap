@@ -1,0 +1,49 @@
+﻿include "math.fbs";
+include "util.fbs";
+
+namespace WebMap.Networking.Models;
+
+table DynamicMarkerData {
+    level_id: uint32;
+    objective_id: uint32;
+    tooltip: string;
+    icon: uint32;
+    position: Vector3 (required);
+    radius: float;
+    map_id: uint32;
+    data_id: uint32;
+}
+
+table DynamicMarker {
+    objective_id: uint32;
+    label: string;
+    data: [DynamicMarkerData];
+    recommended_level: uint16;
+    should_render: bool;
+}
+
+table DynamicMarkerList {
+    markers: [DynamicMarker];
+}
+
+table QuestLinkMarker {
+    icon: uint32;
+    tooltip: string;
+    level_id: uint32;
+    position: Vector3 (required);
+    recommended_level: uint16;
+    source_map_id: uint32;
+    target_map_id: uint32;
+}
+
+table QuestLinkMarkerList {
+    markers: [QuestLinkMarker];
+}
+
+table FlagMarker {
+    // Currently empty in C#
+}
+
+table FlagMarkerList {
+    markers: [FlagMarker];
+}

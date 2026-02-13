@@ -1,0 +1,33 @@
+﻿include "math.fbs";
+include "util.fbs";
+
+namespace WebMap.Networking.Models;
+
+union StaticMarkerData {
+    MapLink: MapLinkData,
+    ImplicitMapLink: MapLinkData,
+    Aetheryte: AetheryteData,
+    PlaceName: PlaceNameData
+}
+
+table StaticMarker {
+    sub_row_id: uint32 (key);
+    title: SeString;
+    icon: uint16 = null;
+    position: Vector2 (required);
+    subtext_orientation: uint8 = null;
+    type: uint8;
+    data: StaticMarkerData;
+}
+
+table MapLinkData {
+    target_map_id: uint;
+}
+
+table AetheryteData {
+    aetheryte_id: uint;
+}
+
+table PlaceNameData {
+    tooltip: SeString (required);
+}

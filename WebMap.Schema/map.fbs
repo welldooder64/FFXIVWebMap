@@ -1,0 +1,19 @@
+﻿namespace WebMap.Networking.Models;
+
+table Map {
+    row_id: uint32 (key);
+    id: string (required);
+    region: string (required);
+    place: string (required);
+    sub_place: string;
+    map_marker_range: uint16;
+    priority_category_ui: uint32;
+    priority_ui: uint32;
+    hierarchy: uint32;
+    discovery_array_byte: bool;
+    discovery_flag: uint32;
+    discovery_index: int16;
+    size_factor: uint16;
+    offset_x: int16;
+    offset_y: int16;
+}

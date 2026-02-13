@@ -1,0 +1,24 @@
+﻿namespace WebMap.Networking.Models;
+
+enum MessageType : byte {
+    MapData,
+    
+    PlayerLocation,
+    PlayerPosition,
+    
+    SelectedLocation,
+    DiscoveryMask,
+    
+    QuestMarkers,
+    UnacceptedQuestMarkers,
+    QuestLinkMarkers,
+    LevequestMarkers,
+    ActiveLevequestMarker,
+    GuildLeveAssignmentMarkers,
+    GuildOrderGuideMarkers,
+    HousingMarkers,
+    TripleTriadMarkers,
+    CustomTalkMarkers,
+    GemstoneTraderMarkers,
+    FlagMarkers,
+}

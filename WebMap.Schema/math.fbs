@@ -1,0 +1,17 @@
+﻿namespace WebMap.Networking.Models;
+
+struct Vector2 {
+    x: float;
+    y: float;
+}
+
+struct Vector3 {
+    x: float;
+    y: float;
+    z: float;
+}
+
+struct Transform {
+    position: Vector3;
+    rotation: float;
+}

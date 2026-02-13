@@ -1,0 +1,21 @@
+﻿include "math.fbs";
+
+namespace WebMap.Networking.Models;
+
+table Location {
+    map_id: uint32;
+}
+
+table PlayerTransformAndCameraRotation {
+    player_transform: Transform;
+    camera_rotation: float;
+}
+
+table SelectedLocation {
+    map_id: uint32;
+    discovery_mask: int32;
+}
+
+table DiscoveryMask {
+    mask: int32;
+}

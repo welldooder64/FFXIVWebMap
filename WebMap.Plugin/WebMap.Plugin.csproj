@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Dalamud.NET.Sdk/14.0.1">
+    <PropertyGroup>
+        <Version>0.1.0.0</Version>
+        <IsPackable>false</IsPackable>
+        <RootNamespace>WebMap</RootNamespace>
+        <AssemblyName>WebMap</AssemblyName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="EmbedIO" Version="3.5.2" />
+        <PackageReference Include="Google.FlatBuffers" Version="25.2.10" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+        <PackageReference Include="TeximpNet" Version="1.4.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="lib\DirectXTexC.dll">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <TargetPath>DirectXTexC.dll</TargetPath>
+        </None>
+        <Reference Include="OtterTex.dll">
+            <HintPath>lib\OtterTex.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="lib\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FlatBufferFiles Include="$(SolutionDir)WebMap.Schema/**/*.fbs" Visible="false" />
+        <UpToDateCheckInput Include="@(FlatBufferFiles)" />
+    </ItemGroup>
+    <Target Name="CompileFlatBuffers" BeforeTargets="BeforeBuild"
+            Inputs="@(FlatBufferFiles)"
+            Outputs="$(ProjectDir)obj/.flatbuffers.stamp">
+        <Exec Command="flatc --csharp -o $(ProjectDir)_generated/ %(FlatBufferFiles.FullPath)" />
+
+        <!-- Create/update a stamp file to track when we last compiled -->
+        <Touch Files="$(ProjectDir)obj/.flatbuffers.stamp" AlwaysCreate="true" />
+    </Target>
+    <Target Name="MoveFlatBuffers" AfterTargets="CompileFlatBuffers">
+        <ItemGroup>
+            <GeneratedFlatBufferFiles Include="$(ProjectDir)_generated/WebMap/**/*"/>
+        </ItemGroup>
+
+        <!-- Move files preserving directory structure relative to _generated/WebMap -->
+        <Move
+            SourceFiles="@(GeneratedFlatBufferFiles)"
+            DestinationFiles="@(GeneratedFlatBufferFiles->'$(ProjectDir)%(RecursiveDir)%(Filename)%(Extension)')"
+            Condition="'@(GeneratedFlatBufferFiles)' != ''" />
+
+        <!-- Clean up the temporary _generated folder -->
+        <RemoveDir Directories="$(ProjectDir)_generated" />
+    </Target>
+
+    <!-- Frontend build configuration -->
+    <PropertyGroup>
+        <WebFrontendDir>$(SolutionDir)WebMap.Web</WebFrontendDir>
+        <WebFrontendOutputDir>$(WebFrontendDir)\dist</WebFrontendOutputDir>
+    </PropertyGroup>
+
+    <!-- Track frontend source files for incremental builds -->
+    <ItemGroup>
+        <FrontendSourceFiles Include="$(WebFrontendDir)\src\**\*" Visible="false" />
+        <FrontendSourceFiles Include="$(WebFrontendDir)\public\**\*" Visible="false" />
+        <FrontendSourceFiles Include="$(WebFrontendDir)\index.html" Visible="false" />
+        <FrontendSourceFiles Include="$(WebFrontendDir)\package.json" Visible="false" />
+        <FrontendSourceFiles Include="$(WebFrontendDir)\pnpm-lock.yaml" Visible="false" />
+        <FrontendSourceFiles Include="$(WebFrontendDir)\vite.config.ts" Visible="false" />
+        <FrontendSourceFiles Include="$(WebFrontendDir)\tsconfig.json" Visible="false" />
+        <UpToDateCheckInput Include="@(FrontendSourceFiles)" />
+    </ItemGroup>
+
+    <!-- Build frontend before the main build -->
+    <Target 
+        Name="BuildFrontend" 
+        BeforeTargets="BeforeBuild" 
+        Inputs="@(FrontendSourceFiles)" 
+        Outputs="$(ProjectDir)obj\.frontend.stamp"
+    >
+        <Exec Command="pnpm install" WorkingDirectory="$(WebFrontendDir)" />
+        <Exec Command="pnpm build" WorkingDirectory="$(WebFrontendDir)"/>
+        <Touch Files="$(ProjectDir)obj\.frontend.stamp" AlwaysCreate="true" />
+    </Target>
+
+    <!-- Include built frontend files as embedded resources -->
+    <ItemGroup Condition="Exists('$(WebFrontendOutputDir)')">
+        <EmbeddedResource Include="$(WebFrontendOutputDir)\**\*" Visible="false">
+            <Link>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </EmbeddedResource>
+    </ItemGroup>
+</Project>

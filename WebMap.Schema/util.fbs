@@ -1,0 +1,5 @@
+﻿namespace WebMap.Networking.Models;
+
+table SeString {
+    data: [ubyte] (required);
+}

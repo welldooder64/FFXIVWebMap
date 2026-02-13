@@ -1,0 +1,26 @@
+﻿include "dynamic_marker.fbs";
+include "map_data.fbs";
+include "message_type.fbs";
+include "player.fbs";
+include "static_marker.fbs";
+
+namespace WebMap.Networking.Models;
+
+union MessagePayload {
+    MapData,
+    Location,
+    PlayerTransformAndCameraRotation,
+    SelectedLocation,
+    DiscoveryMask,
+    DynamicMarker,
+    DynamicMarkerList,
+    QuestLinkMarkerList,
+    FlagMarkerList,
+}
+
+table ServerMessage {
+    type: MessageType;
+    payload: MessagePayload;
+}
+
+root_type ServerMessage;

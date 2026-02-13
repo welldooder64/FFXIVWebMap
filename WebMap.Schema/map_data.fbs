@@ -1,0 +1,20 @@
+﻿include "map.fbs";
+include "static_marker.fbs";
+
+namespace WebMap.Networking.Models;
+
+table MapData {
+    maps: [Map];
+    markers: [MapMarkersPair];
+    marker_names: [MarkerName];
+}
+
+table MapMarkersPair {
+    key: uint32 (key);
+    value: [StaticMarker];
+}
+
+table MarkerName {
+    id: uint32 (key);
+    name: string;
+}
