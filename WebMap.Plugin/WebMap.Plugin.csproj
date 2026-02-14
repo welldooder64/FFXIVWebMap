@@ -83,9 +83,16 @@
         <Exec Command="pnpm install" WorkingDirectory="$(WebFrontendDir)" />
         <Exec Command="pnpm build" WorkingDirectory="$(WebFrontendDir)"/>
         <Touch Files="$(ProjectDir)obj\.frontend.stamp" AlwaysCreate="true" />
+
+        <!-- Include frontend files AFTER they're built -->
+        <ItemGroup>
+            <EmbeddedResource Include="$(WebFrontendOutputDir)\**\*" Visible="false">
+                <Link>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</Link>
+            </EmbeddedResource>
+        </ItemGroup>
     </Target>
 
-    <!-- Include built frontend files as embedded resources -->
+    <!-- Also include if dist already exists (for incremental builds) -->
     <ItemGroup Condition="Exists('$(WebFrontendOutputDir)')">
         <EmbeddedResource Include="$(WebFrontendOutputDir)\**\*" Visible="false">
             <Link>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</Link>
